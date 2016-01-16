@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<title>New Article</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){	
+	var count = 1000;
+	
+	$("#addimage").click(function(){
+		var title = "Title:<br /><input type='text' name='imagetitle_" + count + "' size='70'><br />";
+		var url = "Image URL:<br /><input type='text' name='imageurl_" + count + "' size='70'><br />";
+		var imageFile = "Or image file:<br /><input class='addfile' type='file' name='" + count + "'><br />";
+		var desc = "Description:<br /><textarea name='imagedesc_" + count + "' rows='2' cols='50'></textarea> <br /><br />";					   
+		$("#images").append(title + url + imageFile + desc);
+		$('.addfile').on('change', function(event){
+			var str2 = 'input[name="imageurl_' + this.name + '"]';
+			//alert(str2);
+			var text2 = $('#images').find(str2).val();
+			var myelement = $('#images').find(str2);
+			myelement.val("wait...");
+			var imagedata = loadimage(event, myelement);
+		});
+		count++;
+	  });
+
+	$("#submit").click(function(){	
+		var formData = $("form").serialize();		
+		formData = formData + "&action=add_new&count="+count;
+		var id = "";
+		 $.ajax({
+				url: "_admin",
+				type: "POST",
+				data: formData,
+				success: function(data, textStatus, jqXHR){
+					alert("Success");
+					$("#images").empty();
+					id = data;
+					window.location = 'photo?id='+id;
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					alert("Fail");
+				}
+			 });
+		 count = 1000;
+		 
+	});
+});
+
+function loadimage(event, myelement){
+   var input = event.target;
+    var reader = new FileReader();
+    var imagedata = "";
+    reader.onload = function(){
+      var dataURL = reader.result;
+      imagedata = dataURL;
+      resize(imagedata, myelement);
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
+
+function resize(imagedata, myelement){
+	var img = new Image();
+	img.src = imagedata;
+	console.log(img);
+	
+	img.onload = function(){
+		var MAX_HEIGHT = 400;
+		var MAX_WIDTH = 600;
+		var imageHeight = img.height;
+		var imageWidth = img.width;
+		var ratial = 1;
+		if(img.width > MAX_WIDTH){
+			ratial = MAX_WIDTH/img.width;
+		}else if(img.height > MAX_HEIGHT){
+			ratial = MAX_HEIGHT/img.height;
+		}
+		imageWidth = img.width * ratial;
+		imageHeight = img.height*ratial;
+
+		//alert(imageWidth + ", " + imageHeight + ", " + ratial);
+
+		var canvas = document.createElement("canvas");
+		canvas.height = imageHeight;
+		canvas.width = imageWidth;
+
+		var ctx = canvas.getContext("2d");	
+		ctx.scale(ratial, ratial);
+
+		ctx.drawImage(img, 0, 0);
+		//var output = document.getElementById('originalImage');		
+    	
+    	var newdata = canvas.toDataURL("image/jpeg", 0.7);
+    	//output.src = newdata;
+    	myelement.val(newdata);
+	}
+}
+</script>
+
+</head>
+<body>
+<h2>Add New Article</h2>
+<form class="myform" action="admin" method="post">
+Title: <br />
+<input type="text" name="title" size="70"></input><br />
+Content:<br />
+<textarea name="content" rows="5" cols="50"></textarea>
+<br />
+<div id="images"></div>
+
+<input type="button"  id="addimage" value="Add Image"></input>
+<input type="button" id="submit" value="Submit"></input>
+
+</form>
+
+<img id="originalImage"></img>
+
+</body>
+</html>
