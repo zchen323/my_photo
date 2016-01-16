@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-app="" ng-init="firstName='John'"  ng-controller="personController">
+	<p>Name: <input type="text" ng-model="name"></p>
+	<p ng-bind="name"></p>	
+	<p>The name is <span ng-bind="firstName"></span></p>
+	<p>My sirst expression: {{5 + 9}}</p>
+	
+	<p>
+		First Name: <input type="text" ng-model="firstName2"></input>
+		Last name: <input type="text" ng-model="lastName"></input>
+	</p>
+	
+	
+	<div fs-modal 
+      on-ok="proceedAsPlanned()"
+      on-cancel="abort()"
+      title="Are you sure?"></div>
+	
+</div>
+<script>
+	function personController($scope){
+		$scope.firstName2 = "Zhongkai";
+		$scope.lastName = "Chen";
+	}
+</script>
+
+<script>
+	var data = {
+				"firstName":"Ray";
+				"lastName":"Villalobos",
+				"joined":2012
+			};
+
+	alert(data.lastName);
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+
+
+</body>
+</html>
