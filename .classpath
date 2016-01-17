@@ -9,5 +9,13 @@
 	<classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.9.12/appengine-testing-1.9.12.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-stubs/1.9.12/appengine-api-stubs-1.9.12.jar"/>
 	<classpathentry kind="var" path="M2_REPO"/>
+	<classpathentry kind="lib" path="/Users/zchen323/Downloads/android-sdk-mac_86/platforms/android-2.0/android.jar" sourcepath="/Users/zchen323/Downloads/android-sdk-mac_86/platforms/android-2.0/sources">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/zchen323/Downloads/android-sdk-mac_86/docs/reference"/>
+		</attributes>
+		<accessrules>
+			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
+		</accessrules>
+	</classpathentry>
 	<classpathentry kind="output" path="target/photo-1.0-SNAPSHOT/WEB-INF/classes"/>
 </classpath>

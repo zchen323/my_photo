@@ -60,10 +60,7 @@ public class Dao {
 		articleEntity.setProperty("id", article.getId());
 		articleEntity.setProperty("title", article.getTitle());
 		articleEntity.setProperty("date", article.getDate());
-<<<<<<< HEAD
 		articleEntity.setProperty("isActive", article.isActive());
-=======
->>>>>>> 7ab8c01524bf2e962d8c920dbd1cf8371edf2818
 		articleEntity.setProperty("value", text);
 		datastore.put(articleEntity);	
 		
@@ -91,12 +88,9 @@ public class Dao {
 			a.setId((String)result.getProperty("id"));
 			a.setTitle((String)result.getProperty("title"));
 			a.setDate((Date)result.getProperty("date"));
-<<<<<<< HEAD
 			if(result.getProperty("isActive") != null){
 				a.setActive((Boolean)result.getProperty("isActive"));
 			}
-=======
->>>>>>> 7ab8c01524bf2e962d8c920dbd1cf8371edf2818
 			list.add(a);
 		}		
 		return list;
