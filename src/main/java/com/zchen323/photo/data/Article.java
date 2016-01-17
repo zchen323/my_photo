@@ -12,6 +12,7 @@ public class Article {
 	private String content;
 	private List<Photo> photos;
 	private boolean active;
+	private Date lastUpdate;
 	
 	public boolean isActive() {
 		return active;
@@ -67,5 +68,19 @@ public class Article {
 		return new SimpleDateFormat("yyyy-MM-dd").format(this.date);
 		
 	}
+
+	public String getLastUpdateDateString(){
+		return new SimpleDateFormat("yyyy-MM-dd").format(this.lastUpdate);
+		
+	}	
+	
+	public Date getLastUpdate() {
+		return lastUpdate;
+	}
+	public void setLastUpdate(Date lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+	
+	
 	
 }

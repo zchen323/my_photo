@@ -53,12 +53,12 @@ public class PhotoServlet extends HttpServlet{
 				// list all article
 				List<Article> list = Dao.getAllArticleWithTitleAndDate();
 				List<Article> cleanList = new ArrayList<Article>();
+				
 				for(Article a : list){
 					if(a.isActive()){
 						cleanList.add(a);
 					}
 				}
-				
 				req.setAttribute("articles", cleanList);				
 				req.getRequestDispatcher("/article_list.jsp").forward(req, resp);
 			}
