@@ -1,7 +1,10 @@
 package com.zchen323.photo.servlet;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 7ab8c01524bf2e962d8c920dbd1cf8371edf2818
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -37,7 +40,10 @@ public class PhotoServlet extends HttpServlet{
 			}else if(title != null){
 				// find article by title
 				List<Article> list = Dao.getArticalByTitle(title);
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 7ab8c01524bf2e962d8c920dbd1cf8371edf2818
 				if(list.size() == 1){
 					article = list.get(0);
 					req.setAttribute("article", article);			
@@ -52,6 +58,7 @@ public class PhotoServlet extends HttpServlet{
 			}else{
 				// list all article
 				List<Article> list = Dao.getAllArticleWithTitleAndDate();
+<<<<<<< HEAD
 				List<Article> cleanList = new ArrayList<Article>();
 				
 				for(Article a : list){
@@ -60,6 +67,9 @@ public class PhotoServlet extends HttpServlet{
 					}
 				}
 				req.setAttribute("articles", cleanList);				
+=======
+				req.setAttribute("articles", list);				
+>>>>>>> 7ab8c01524bf2e962d8c920dbd1cf8371edf2818
 				req.getRequestDispatcher("/article_list.jsp").forward(req, resp);
 			}
 			

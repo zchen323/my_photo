@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Google App Engine generated folder
 appengine-generated/
 target/*
@@ -8,3 +9,19 @@ target/*
 *.war
 *.ear
 
+=======
+*/target
+target
+*~
+*/test-output
+temp-testng-customsuite.xml
+**pom.xml.releaseBackup
+release.properties
+*.iws
+config.properties
+.settings
+.classpath
+.project
+*.ipr
+*.iml
+>>>>>>> 7ab8c01524bf2e962d8c920dbd1cf8371edf2818
